@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1554482307 source:c:\users\alumno\documents\salamán\multijugador\encrypt-examples\encryptedchatclient\main.cpp
+	<stdio.h>
+	<winsock2.h>
+	<string.h>
+	<iostream>
+	<pthread.h>
+	<windows.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+
