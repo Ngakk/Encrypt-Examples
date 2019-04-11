@@ -10,3 +10,108 @@
 	<time.h>
 	<math.h>
 
+1555003442 source:c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\main.cpp
+	<stdio.h>
+	<winsock2.h>
+	<string.h>
+	<iostream>
+	<pthread.h>
+	<windows.h>
+	<stdlib.h>
+	<time.h>
+	<math.h>
+
+1550900413 source:c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\pch.cpp
+	"pch.h"
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\pch.h
+	"cpu.h"
+	"config.h"
+	"simple.h"
+	"secblock.h"
+	"misc.h"
+	"smartptr.h"
+	"stdcpp.h"
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\cpu.h
+	"config.h"
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\config.h
+	<cstddef>
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\simple.h
+	"config.h"
+	"cryptlib.h"
+	"misc.h"
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\cryptlib.h
+	"config.h"
+	"stdcpp.h"
+	"trap.h"
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\stdcpp.h
+	<intrin.h>
+	<string>
+	<memory>
+	<exception>
+	<typeinfo>
+	<algorithm>
+	<functional>
+	<utility>
+	<vector>
+	<limits>
+	<deque>
+	<list>
+	<map>
+	<new>
+	<iterator>
+	<atomic>
+	<mutex>
+	<utility>
+	<cstdlib>
+	<cstring>
+	<climits>
+	<cmath>
+	<cstddef>
+	<stdint.h>
+	<stdint.h>
+	<stddef.h>
+	<stdint.h>
+	<vector.cc>
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\trap.h
+	"config.h"
+	<iostream>
+	<sstream>
+	"ossig.h"
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\ossig.h
+	"config.h"
+	<signal.h>
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\misc.h
+	"config.h"
+	"cryptlib.h"
+	"stdcpp.h"
+	"smartptr.h"
+	<intrin.h>
+	<mem.h>
+	<stdlib.h>
+	<byteswap.h>
+	<x86intrin.h>
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\smartptr.h
+	"config.h"
+	"stdcpp.h"
+
+1550900413 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\crypto++\secblock.h
+	"config.h"
+	"stdcpp.h"
+	"misc.h"
+
+1549737008 source:c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\aes.cpp
+	"AES.h"
+
+1549737008 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\aes.h
+	<cstring>
+
