@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1554480609 source:c:\users\alumno\documents\salamán\multijugador\encrypt-examples\encryptedchat\main.cpp
+1555086705 source:c:\users\alumno\documents\salamán\multijugador\encrypt-examples\encryptedchat\main.cpp
 	<stdio.h>
 	<winsock2.h>
 	<string.h>
@@ -9,6 +9,9 @@
 	<stdlib.h>
 	<time.h>
 	<math.h>
+	"aes.h"
+	<cassert>
+	<cstring>
 
 1555003442 source:c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\main.cpp
 	<stdio.h>
@@ -113,5 +116,11 @@
 	"AES.h"
 
 1549737008 c:\users\alumno.g00\documents\salamán\multijugador\encrypt\encryptedchat\aes.h
+	<cstring>
+
+1555081661 source:c:\users\alumno\documents\salamán\multijugador\encrypt-examples\encryptedchat\aes.cpp
+	"AES.h"
+
+1555081661 c:\users\alumno\documents\salamán\multijugador\encrypt-examples\encryptedchat\aes.h
 	<cstring>
 

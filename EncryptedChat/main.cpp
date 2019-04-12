@@ -7,75 +7,107 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <math.h>
-#include "AES.h"
+#include "aes.h"
+#include <cassert>
+#include <cstring>
+
 
 using namespace std;
 
 SOCKET  client;
 SOCKET  server;
 
-unsigned char message_listen[100];
-unsigned char message_send[100];
+char message_listen[100];
+char message_send[100];
 unsigned char key[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x011,
     0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f };
 
-unsigned char* EncryptMessage(unsigned char* _msg)
+void ConvertToUnsigned(char* _input, unsigned char* _output)
 {
-  AES aes(256);
-  unsigned char *plain = _msg;
-
-  unsigned int len = 0;
-  unsigned char *out = aes.EncryptECB(plain, 16 * sizeof(unsigned char), key, len);
-
-  return out;
+    for(int i = 0; i < 100; i++){
+        _output[i] = static_cast<unsigned char>(_input[i]);
+    }
 }
 
-unsigned char* DecryptMessage(unsigned char* _msg)
+void ConvertToSigned(unsigned char* _input, char* _output)
+{
+    for(int i = 0; i < 100; i++)
+    {
+        _output[i] = static_cast<char>(_input[i]);
+    }
+}
+
+void EncryptMessage(char* _msg)
 {
     AES aes(256);
-    unsigned char plain[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff };
+
+    unsigned char plain[100];
+
+    ConvertToUnsigned(_msg, plain);
+
+    unsigned int len = 0;
+    unsigned char *out = aes.EncryptECB(plain, 16 * sizeof(unsigned char), key, len);
+
+    ConvertToSigned(out, _msg);
+
+    delete[] out;
+}
+
+void DecryptMessage(char* _msg)
+{
+    AES aes(256);
+
+    unsigned char plain[100];
+
+    ConvertToUnsigned(_msg, plain);
+
+    cout << "Encrypted Message recived: " << _msg << endl;
 
     unsigned int len = 0;
     unsigned char *out = aes.DecryptECB(plain, 16 * sizeof(unsigned char), key, len);
 
-    return out;
+    cout << "Message recived decrypted: " << out << endl;
+
+    assert(!memcmp(out, plain, 16 * sizeof(unsigned char)));
+
+    cout << "Message recived asserted: " << out << endl;
+
+    ConvertToSigned(out, _msg);
+
+    delete[] out;
 }
-//TODO: arreglar errores del unsigned char
-void* thread_function_listen(void *id)
+
+void* thread_function_listen(void* id)
 {
     while(strncmp(message_listen, "salir", 5) != 0 || strncmp(message_send, "salir", 5) != 0)
     {
-        ///ahora esperamos mensaje del servidor
+        ///ahora esperamos mensaje del cliente
         memset(message_listen, 0, sizeof(message_listen)); //limpiamos buffer
         if(recv(client, message_listen, sizeof(message_listen), 0) != sizeof(message_listen))
         {
             puts("Nada recibido");
             closesocket(client);
+            closesocket(server);
             WSACleanup();
             Sleep(4000);
             break;
         }
         else
         {
-            unsigned char* decrypted_message = DecryptMessage(message_listen);
-            printf("Servidor: %s", decrypted_message);
-
-            delete[] decrypted_message;
+            DecryptMessage(message_listen);
+            printf("Cliente: %s", message_listen);
         }
-
     }
 }
 
 void* thread_function_send(void *id)
 {
-    while(strncmp(message_listen, "salir", 5) != 0 || strncmp(message_send, "salir", 5) != 0)
+    while(strncmp(message_send, "salir", 5) != 0 || strncmp(message_listen, "salir", 5) != 0)
     {
         ///ahora nosotros contestamos
         fgets(message_send, 100, stdin);
-
-        char* encrypted_msg = EncryptMessage(message_send);
-
-        if(send(client, encrypted_msg, sizeof(encrypted_msg), 0) != sizeof(encrypted_msg))
+        EncryptMessage(message_send);
+        if(send(client, message_send, sizeof(message_send), 0) != sizeof(message_send))
         {
             puts("Conexion perdida");
             closesocket(client);
@@ -83,8 +115,6 @@ void* thread_function_send(void *id)
             Sleep(4000);
             break;
         }
-
-        delete[] encrypted_msg;
     }
 }
 
